@@ -350,3 +350,6 @@ MigrationBackup/
 .ionide/
 dist/*
 package-lock.json
+dist/jalalidatepicker.js
+dist/jalalidatepicker.min.css
+dist/jalalidatepicker.min.js
