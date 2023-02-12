@@ -12,7 +12,7 @@ export default clon({
     today:null,
     //{hour:12,minute:11,second:10}
     initTime: null,
-    
+    isWidget:false,
     hasSecond: true,
 
     time:false,

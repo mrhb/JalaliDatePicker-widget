@@ -60,6 +60,7 @@ export const render = (jdp) => {
     if (jdp.options.time) {
         renderTimePicker(jdp);
     }
+    if(!jdp.options.isWidget)
     renderFooter(jdp);
 };
 

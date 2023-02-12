@@ -31,6 +31,7 @@ import {
     EVENT_CHANGE_INPUT_STR,
     MIN_MAX_TODAY_SETTING,
     MIN_MAX_ATTR_SETTING,
+    IS_WIDGET,
     MAX_DATE_ATTR_NAME,
     MIN_DATE_ATTR_NAME,
     MAX_TIME_ATTR_NAME,
@@ -45,18 +46,26 @@ import {
 } from "./constants";
 import draw from "./draw";
 import defaults from "./defaults";
-
+const days= ["شنبه", "یک", "دو", "سه", "چهار", "پنج", "جمعه"];
+var options= defaults;
+options.days=days;
 const jalaliDatepicker = {
     init(options) {
         this.updateOptions(options);
         window.onresize = windowResize;
         if (this.options.autoHide) document.body.onclick = documentClick;
         if (this.options.autoShow) addEventListenerOnInputs(this.options.selector);
+        var elems = document.getElementsByTagName("input");
+            for (var k = 0; k < elems.length; k++) {
+            if (elems[k].hasAttribute("data-jdp-widget")) {
+               jalaliDatepicker.displayWidget(elems[k]);
+            }
+        }
     },
     updateOptions(options) {
         this.options = normalizeOptions(options);
     },
-    options: defaults,
+    options: options,
     input: null,
     get dpContainer() {
         if (!this._dpContainer) {
@@ -132,6 +141,26 @@ const jalaliDatepicker = {
         this._draw();
         setReadOnly(input, this.options);
         this.dpContainer.style.visibility = STYLE_VISIBILITY_VISIBLE;
+        this.dpContainer.style.display = STYLE_DISPLAY_BLOCK;
+        this.overlayElm.style.display = STYLE_DISPLAY_BLOCK;
+        setTimeout(() => {
+            this.dpContainer.style.visibility = STYLE_VISIBILITY_VISIBLE;
+            this.dpContainer.style.display = STYLE_DISPLAY_BLOCK;
+            this.overlayElm.style.display = STYLE_DISPLAY_BLOCK;
+            this.isShow=true;
+        }, 300);
+        this.setPosition();
+        setScrollOnParent(input);
+    },
+    displayWidget(input) {
+        this._initDate = null;
+        this._initTime = null;
+        this._value = null;
+        this.input = input;
+        this._draw();
+        setReadOnly(input, this.options);
+        this.dpContainer.style.visibility = STYLE_VISIBILITY_VISIBLE;
+        this.dpContainer.classList.add("widget");
         this.dpContainer.style.display = STYLE_DISPLAY_BLOCK;
         this.overlayElm.style.display = STYLE_DISPLAY_BLOCK;
         setTimeout(() => {
