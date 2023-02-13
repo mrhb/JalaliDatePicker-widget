@@ -9,15 +9,19 @@ module.exports = (env, argv) => {
     return {
         target: "es5",
         entry: {
-            jalalidatepicker: ["./src/index.js", "./src/styles/index.scss"]
+            jalalidatepicker: [
+                "./src/index.js",
+                // "./src/styles/index.scss",
+                "./src/styles/widget.scss"
+            ]
         },
         output: {
             filename: `[name]${prefixFiles}.js`
         },
-        optimization: {
-            minimize: !devMode,
-            minimizer: [new TerserJsPlugin({}), new OptimizeCssAssetsPlugin({})]
-        },
+        // optimization: {
+        //     minimize: !devMode,
+        //     minimizer: [new TerserJsPlugin({}), new OptimizeCssAssetsPlugin({})]
+        // },
         plugins: [
             new MiniCssExtractPlugin({
                 filename: `[name]${prefixFiles}.css`,
@@ -47,7 +51,7 @@ module.exports = (env, argv) => {
                     {
                         loader: "css-loader",
                         options: {
-                            importLoaders: 2
+                            importLoaders: 2,
                         }
                     },
                     "sass-loader"]
