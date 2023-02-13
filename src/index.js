@@ -51,7 +51,7 @@ var options= defaults;
 options.days=days;
 options.plusHtml= "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"96\" height=\"96\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-chevron-right\"><polyline points=\"9 18 15 12 9 6\"></polyline></svg>";
 options.minusHtml= "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"96\" height=\"96\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-chevron-left\"><polyline points=\"15 18 9 12 15 6\"></polyline></svg>";
-
+options.container= "#widget-calendar";
 const jalaliDatepicker = {
     init(options) {
         console.log('displayWidget...................');
@@ -201,7 +201,8 @@ const jalaliDatepicker = {
         if (top - inputHeight >= dpContainerHeight && top + dpContainerHeight >= window.innerHeight) {
             top -= dpContainerHeight + inputHeight + this.options.bottomSpace + this.options.topSpace;
         }
-        this.dpContainer.style.position = STYLE_POSITION_FIXED;
+        if(this.options.isWidget)this.dpContainer.style.position = "relative";
+        else this.dpContainer.style.position = STYLE_POSITION_FIXED;
         this.dpContainer.style.left = left + "px";
         this.dpContainer.style.top = top + "px";
     },
