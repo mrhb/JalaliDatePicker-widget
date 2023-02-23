@@ -201,7 +201,11 @@ const jalaliDatepicker = {
         if (top - inputHeight >= dpContainerHeight && top + dpContainerHeight >= window.innerHeight) {
             top -= dpContainerHeight + inputHeight + this.options.bottomSpace + this.options.topSpace;
         }
-        if(this.options.isWidget)this.dpContainer.style.position = "relative";
+        if(this.options.isWidget){
+            this.dpContainer.style.position = "relative";
+            top=0;
+            left=0;
+        }
         else this.dpContainer.style.position = STYLE_POSITION_FIXED;
         this.dpContainer.style.left = left + "px";
         this.dpContainer.style.top = top + "px";

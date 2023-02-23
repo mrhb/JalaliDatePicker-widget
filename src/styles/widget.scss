@@ -13,7 +13,7 @@ $controls-btn-size: 1.5rem;
 $controls-btn-padding: math.div($controls-btn-size, 6);
 $invertedBg: invert($calendarBackground);
 $calendarForeground: color.change($invertedBg, $alpha: 0.9);
-$activeColor: #569ff7;
+$activeColor: #206e64;
 $mobileQuerySize:481px;
 
 jdp-overlay{
@@ -33,8 +33,8 @@ jdp-overlay{
 }
 jdp-container {
     position: absolute;
-    max-width: $calendarWidth;
-    min-width: $calendarWidth;
+    // max-width: $calendarWidth;
+    // min-width: $calendarWidth;
     background: $calendarBackground;
     display: none;
     direction: rtl;
@@ -82,7 +82,7 @@ jdp-container {
                 overflow: hidden;
                 flex: none;
                 text-decoration: none;
-                border: 1px solid $calendarBorderColor;
+                // border: 1px solid $calendarBorderColor;
                 border-radius: $radius;
 
                 svg {
@@ -170,8 +170,8 @@ jdp-container {
             select {
                 cursor: pointer;
                 position: relative;
-                -webkit-appearance: menulist;
-                -moz-appearance: menulist;
+                -webkit-appearance: none;
+                -moz-appearance: none;
             }
         }
 
@@ -197,7 +197,7 @@ jdp-container {
             flex-basis: 14.2857143%;
             height: $daySize - 8;
             line-height: $daySize - 8;
-            margin: 2px 0;
+            margin: 0px 0;
             display: inline-block;
             position: relative;
             justify-content: center;
@@ -206,10 +206,10 @@ jdp-container {
 
             &.today {
                 border-color: color.change($invertedBg, $alpha: 0.3);
+                background-color: $activeColor !important;
             }
 
             &.selected {
-                background-color: $activeColor !important;
                 color: #fff !important;
                 opacity: 1 !important;
             }
