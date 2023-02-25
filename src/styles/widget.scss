@@ -206,7 +206,6 @@ jdp-container {
 
             &.today {
                 border-color: color.change($invertedBg, $alpha: 0.3);
-                background-color: $activeColor !important;
             }
 
             &.selected {

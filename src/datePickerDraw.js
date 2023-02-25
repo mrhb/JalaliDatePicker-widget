@@ -61,9 +61,9 @@ const createElementMinus = (jdp, container, isYear) => {
 
 const renderYear = (jdp) => {
     const yearsContainer = createElement(YEARS_ELM_QUERY, jdp.dpContainer);
-    createElementPlus(jdp, yearsContainer, true);
-    const yearContainer = createElement(YEAR_ELM_QUERY, yearsContainer);
     createElementMinus(jdp, yearsContainer, true);
+    const yearContainer = createElement(YEAR_ELM_QUERY, yearsContainer);
+    createElementPlus(jdp, yearsContainer, true);
 
     const useDropDownYears = jdp.options.useDropDownYears;
     const yearInputTagName = useDropDownYears ? "select" : "input";
@@ -88,9 +88,9 @@ const renderYear = (jdp) => {
 
 const renderMonths = (jdp) => {
     const monthsContainer = createElement(MONTHS_ELM_QUERY, jdp.dpContainer);
-    createElementPlus(jdp, monthsContainer, false);
-    const monthContainer = createElement(MONTH_ELM_QUERY, monthsContainer);
     createElementMinus(jdp, monthsContainer, false);
+    const monthContainer = createElement(MONTH_ELM_QUERY, monthsContainer);
+    createElementPlus(jdp, monthsContainer, false);
 
     const monthDropDownContainer = createElement("select", monthContainer, EVENT_CHANGE_MONTH_DROPDOWN_STR, (e) => {
         jdp.monthChange(e.target.value);
